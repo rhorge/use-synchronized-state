@@ -118,7 +118,7 @@ function ChildComponent({ parentState }: { parentState: number }) {
 
   // Better: Adjust the state while rendering
   const [prevState, setPrevState] = useState(parentState);
-  if (parentState !== prevItems) {
+  if (parentState !== prevState) {
     setPrevState(parentState);
     setSyncState(parentState);
   }
