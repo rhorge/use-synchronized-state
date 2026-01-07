@@ -3,7 +3,7 @@
 ## Highlights
 - Offers a hook called useSyncState
 - Removes the cascading update problem
-- Same api as useState
+- Same API as useState
 - No extra dependencies
 - Written in react with typescript
 - Typescript support
@@ -94,7 +94,7 @@ This is doing its job, but we now have another problem called "cascading updates
 React Performance tracks). You can read the docs at the following link
 https://react.dev/reference/dev-tools/react-performance-tracks#cascading-updates.
 
-To explain why this happens, we first have to know that React fiber algorithm has two phases: the render phase and
+To explain why this happens, we first have to know that React Fiber algorithm has two phases: the render phase and
 the commit phase. All you need to know, to understand the issue, is that React will call useEffect after the entire
 virtual dom is rendered. 
 
