@@ -67,8 +67,7 @@
     "typescript": "^3.8.3"
   },
   "files": [
-    "dist/*",
-    "package.json"
+    "/dist/*"
   ],
   "keywords": [
     "react",
