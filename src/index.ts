@@ -25,9 +25,7 @@ export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>]
             const oldState = currentStateRef.current;
             currentStateRef.current = newState instanceof Function ? newState(currentStateRef.current) : newState;
 
-            if(oldState !== currentStateRef.current) {
-                setRender(prev => !prev);
-            }
+            setRender(prev => oldState !== currentStateRef.current ? !prev : prev);
         },
         [currentStateRef]
     );
