@@ -9,7 +9,7 @@ import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
  * Returns the exact same output as useState: [state, setState], where state is the synchronized state with the propsState
  */
 export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>] {
-    const [, setState] = useState(propsState);
+    const [, setRender] = useState(true);
     const currentStateRef = useRef(propsState);
 
     const prevStateRef = useRef(propsState);
@@ -23,7 +23,7 @@ export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>]
     const setOptimisticState = useCallback(
         (newState: SetStateAction<T>) => {
             currentStateRef.current = newState instanceof Function ? newState(currentStateRef.current) : newState;
-            setState(currentStateRef.current);
+            setRender(prev => !prev);
         },
         [currentStateRef]
     );
