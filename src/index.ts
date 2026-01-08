@@ -22,8 +22,12 @@ export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>]
 
     const setOptimisticState = useCallback(
         (newState: SetStateAction<T>) => {
+            const oldState = currentStateRef.current;
             currentStateRef.current = newState instanceof Function ? newState(currentStateRef.current) : newState;
-            setRender(prev => !prev);
+
+            if(oldState !== currentStateRef.current) {
+                setRender(prev => !prev);
+            }
         },
         [currentStateRef]
     );
