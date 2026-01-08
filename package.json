@@ -1,6 +1,6 @@
 {
   "name": "use-synchronized-state",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A React hook that creates a synchronized state with a reactive value in react (fixing the Cascading updates issue)",
   "author": "rhorge",
   "license": "MIT",
