@@ -5,7 +5,7 @@
 - Removes the cascading update problem
 - Same API as useState
 - No extra dependencies
-- Written in react with typescript
+- Written in React with Typescript
 - Typescript support
 - Small bundle size
 
@@ -110,7 +110,7 @@ What react docs tell us to do in this case can be found here
 https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes.
 I have changed the above example to match it. It still rerenders the ChildComponent twice, which still causes a
 performance penalty, is hard to reason about and works only for states defined in the same component
-(if syncSate was a prop, it wouldn't work).
+(if syncState was a prop, it wouldn't work).
 
 ```typescript
 function ChildComponent({ parentState }: { parentState: number }) {
