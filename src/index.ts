@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
  * the returned state changes to the same value,
  * but it can also change independently when the returned setState is called.
  * @param propsState - a reactive value (e.g. state, props) with which our returned state will synchronize
- * Returns the exact same output as useState: [state, setState], where state is the synchronized state with the propsState
+ * @return the exact same output as useState: [state, setState], where state is the synchronized state with the propsState
  */
 export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>] {
     const [, setRender] = useState(true);
