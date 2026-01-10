@@ -21,22 +21,63 @@ or
 
 ## Usage
 
-```typescript
+### Synchronize state with prop
+
+```typescript jsx
 import { useState } from 'react';
-import { useSyncState } from 'use-synchronized-state';
 
 function ParentComponent() {
   const [parentState, setParentState] = useState(0);
 
   return (
-    <ChildComponent parentState={parentState} />
+    <div>
+      <button onClick={() => {setParentState(prev => prev + 1);}}>
+        increment parentState
+      </button>
+      <div>parentState = {parentState}</div>
+      <ChildComponent parentState={parentState} />
+    </div>
   );
 }
+
+import { useSyncState } from 'use-synchronized-state';
 
 function ChildComponent({ parentState }: { parentState: number }) {
   // this syncState is synchronized with parentState (has the same api as useState)
   const [syncState, setSyncState] = useSyncState(parentState);
-  // ...
+  
+  return (
+    <div>
+      <button onClick={() => {setSyncState(prev => prev + 1);}}>
+        increment syncState
+      </button>
+      <div>syncState = {syncState}</div>
+    </div>
+  );
+}
+```
+
+### Synchronize state with memoized value
+
+```typescript jsx
+import { useMemo } from 'react';
+import { useSyncState } from 'use-synchronized-state';
+
+function ChildComponent({ parentState }: { parentState: number }) {
+  // compute a value based on parentState
+  const complexState = useMemo(() => parentState + 1, [parentState]);
+  
+  // this syncState is synchronized with complexState (has the same api as useState)
+  const [syncState, setSyncState] = useSyncState(complexState);
+
+  return (
+    <div>
+      <button onClick={() => {setSyncState(prev => prev + 1);}}>
+        increment syncState
+      </button>
+      <div>syncState = {syncState}</div> 
+    </div>
+  );
 }
 ```
 
@@ -49,7 +90,7 @@ the returned state changes to the same value, but it can also change independent
 
 ### Let's see a small example
 
-```typescript
+```typescript jsx
 import { useState } from 'react';
 
 function ParentComponent() {
@@ -79,7 +120,7 @@ What can we do in the following situation?
 
 The first thing that comes to mind is to do something like this:
 
-```typescript
+```typescript jsx
 function ChildComponent({ parentState }: { parentState: number }) {
   const [syncState, setSyncState] = useState(parentState);
 
@@ -112,7 +153,7 @@ I have changed the above example to match it. It still rerenders the ChildCompon
 performance penalty, is hard to reason about and works only for states defined in the same component
 (if syncState was a prop, it wouldn't work).
 
-```typescript
+```typescript jsx
 function ChildComponent({ parentState }: { parentState: number }) {
   const [syncState, setSyncState] = useState(parentState);
 
@@ -131,7 +172,7 @@ if the reactive value changes (for example setParentState(1) is called), both pa
 the same value from the first render (after the setParentState) and there will be no additional render (only the needed one).
 
 
-```typescript
+```typescript jsx
 import { useSyncState } from 'use-synchronized-state';
 
 function ChildComponent({ parentState }: { parentState: number }) {
