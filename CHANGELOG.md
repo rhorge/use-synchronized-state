@@ -1,3 +1,6 @@
+## 1.0.15 (Jan 8, 2026)
+- Correct links in package.json
+
 ## 1.0.14 (Jan 8, 2026)
 - Add CHANGELOG.md to the list of exported files
 
