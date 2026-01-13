@@ -1,4 +1,4 @@
-# A React hook that creates a synchronized state with a reactive value in react (fixing the Cascading updates issue)
+# A React hook that creates a synchronized state with a reactive value (fixing the Cascading updates issue)
 
 ## Highlights
 - Offers a hook called useSyncState
