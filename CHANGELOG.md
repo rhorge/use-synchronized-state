@@ -1,3 +1,6 @@
+## 1.0.16 (Jan 23, 2026)
+- Make the hook compatible with the Fiber algorithm
+
 ## 1.0.15 (Jan 8, 2026)
 - Correct links in package.json
 
