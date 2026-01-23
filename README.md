@@ -149,9 +149,10 @@ This is the cascading updates problem in all its glory, instead of having one re
 
 What react docs tell us to do in this case can be found here
 https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes.
-I have changed the above example to match it. It still rerenders the ChildComponent twice, which still causes a
+The above example was changed to match the docs. It still rerenders the ChildComponent twice, which still causes a smaller
 performance penalty, is hard to reason about and works only for states defined in the same component
-(if syncState was a prop, it wouldn't work).
+(if syncState was a prop, it wouldn't work). Also, the parentState and syncState will be synchronized only starting with
+the second render.
 
 ```typescript jsx
 function ChildComponent({ parentState }: { parentState: number }) {
@@ -167,9 +168,10 @@ function ChildComponent({ parentState }: { parentState: number }) {
 }
 ```
 
-The 'use-synchronized-state' hook fixes all these issues by synchronizing the values in the same and only render. In the bellow example,
+The 'use-synchronized-state' hook fixes some of these issues by synchronizing the values in an easier and more consistent manner. In the bellow example,
 if the reactive value changes (for example setParentState(1) is called), both parentState and syncState will have
-the same value from the first render (after the setParentState) and there will be no additional render (only the needed one).
+the same value from the first render (after the setParentState). There will still be two renders, but the values will be in sync from the first one.
+Also, the api is easy to use and it works for any reactive value.
 
 
 ```typescript jsx
