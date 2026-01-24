@@ -1,6 +1,6 @@
 {
   "name": "use-synchronized-state",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "A React hook that creates a synchronized state with a reactive value (fixing the Cascading updates issue)",
   "homepage": "https://github.com/rhorge/use-synchronized-state#readme",
   "bugs": {
