@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
 /**
  * This hook creates a synchronized state while avoiding the cascading update issue.
@@ -8,17 +8,14 @@ import { Dispatch, SetStateAction, useState } from 'react';
  * @param propsState - a reactive value (e.g. state, props) with which our returned state will synchronize
  * @return the exact same output as useState: [state, setState], where state is the synchronized state with the propsState
  */
-export function useSyncState<T>(propsState: T): [T, Dispatch<SetStateAction<T>>] {
+export function useSyncState<T>(propsState: T) {
     const [prevProps, setPrevProps] = useState(propsState);
-    const [currentState, setCurrentState] = useState(propsState);
-
-    let resultState = currentState;
+    const state = useState<T>(propsState);
 
     if (prevProps !== propsState) {
-        resultState = propsState;
         setPrevProps(propsState);
-        setCurrentState(propsState);
+        state[1](propsState);
     }
 
-    return [resultState, setCurrentState];
+    return state;
 }

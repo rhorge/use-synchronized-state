@@ -168,9 +168,7 @@ function ChildComponent({ parentState }: { parentState: number }) {
 }
 ```
 
-The 'use-synchronized-state' hook fixes some of these issues by synchronizing the values in an easier and more consistent manner. In the bellow example,
-if the reactive value changes (for example setParentState(1) is called), both parentState and syncState will have
-the same value from the first render (after the setParentState). There will still be two renders, but the values will be in sync from the first one.
+The 'use-synchronized-state' hook solves the synchronization problem in an easier and more consistent manner.
 Also, the api is easy to use and it works for any reactive value.
 
 
