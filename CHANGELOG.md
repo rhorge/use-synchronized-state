@@ -1,3 +1,6 @@
+## 1.0.19 (Mar 29, 2026)
+- Fix CHANGELOG.md
+
 ## 1.0.18 (Mar 29, 2026)
 - Inform the bundlers that the package does not have side effects
 
