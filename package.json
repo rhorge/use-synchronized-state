@@ -30,6 +30,7 @@
     "start": "rollup -c -w",
     "test": "jest"
   },
+  "sideEffects": false,
   "jest": {
     "transform": {
       ".(ts|tsx)": "ts-jest"

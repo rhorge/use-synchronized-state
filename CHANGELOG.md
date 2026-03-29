@@ -1,3 +1,6 @@
+## 1.0.18 (Mar 29, 2026)
+- Inform the bundlers that the package does not have side effects
+
 ## 1.0.16 (Jan 23, 2026)
 - Make the hook compatible with the Fiber algorithm
 
